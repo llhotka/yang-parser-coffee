@@ -5,7 +5,7 @@ This is a parser for the YANG data modelling language ([RFC 7950](http://tools.
 
 So far, the parser only does lexical analysis using the rules of RFC 7950. That is, the `parse` function returns an object representing the tree of YANG statements without doing any syntactic or semantic checks.
 
-The annotated CoffeeScript source is [here](https://github.com/llhotka/yang-parser-coffee/wiki/yang_parser).
+The annotated CoffeeScript source is [here](https://github.com/llhotka/yang-parser-coffee/blob/master/src/yang-parser.litcoffee).
 
 License
 -------
