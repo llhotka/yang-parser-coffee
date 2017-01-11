@@ -26,6 +26,9 @@ are:
 
 * `substmts`: array of substatements
 
+Class definition
+----------------
+
     class YangStatement
         constructor: (@prf, @kw, @arg, @substmts) ->
 
