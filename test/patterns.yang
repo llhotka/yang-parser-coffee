@@ -1,0 +1,29 @@
+module test {
+  yang-version 1.1;
+  typedef sq-a {
+    type string {
+      pattern '[0-9]*';
+    }
+  }
+  typedef sq-b {
+    type string {
+      pattern '\d+';
+    }
+  }
+  typedef dq-a {
+    type string {
+      pattern "[0-9]*";
+    }
+  }
+  typedef dq-b {
+    type string {
+      pattern "\\d+";
+    }
+  }
+  typedef dq-c {
+    type string {
+      pattern "\d+";
+    }
+  }
+  
+}

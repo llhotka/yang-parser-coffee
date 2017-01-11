@@ -30,7 +30,7 @@ Class definition
 ----------------
 
     class YangStatement
-        constructor: (@prf, @kw, @arg, @substmts) ->
+      constructor: (@prf, @kw, @arg, @substmts) ->
 
 Comments
 --------
@@ -126,7 +126,15 @@ contain one of four escape sequences representing special characters.
         'n': '\n'
         '"': '"'
         '\\': '\\'
-      P.oneOf('tn"\\').bind (c) -> P.unit esc[c]
+      P.oneOf('tn"\\').bind((c) -> P.unit esc[c]).orElse fallback
+
+However, earlier RFC was underspecified on the escape rules so we
+allow for fallback of accepting any escape sequence unless we detect
+that the module in question is explicitly 1.1 version.
+
+    strict = false
+    fallback = P.anyChar.bind (c) ->
+      P.unit if strict then null else "\\#{c}"
 
 Then, a double-quoted string may contain any character except double
 quote (`"`) or backslash (`\`), or an escape sequence:
@@ -213,6 +221,7 @@ The result of the `statement` parser is an initialized `YangStatement` object.
 
     statement = keyword.bind (kw) ->
       (sep.bind -> argument).option().bind (arg) ->
+        strict = true if kw[1] is 'yang-version' and arg is '1.1'
         optSep.bind -> semiOrBlock.bind (sst) ->
           P.unit new YangStatement kw[0], kw[1], arg, sst
 
