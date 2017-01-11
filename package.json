@@ -1,0 +1,27 @@
+{
+  "name": "yang-parser",
+  "version": "0.1.1",
+  "description": "Parser of YANG data modelling language",
+  "main": "lib/yang-parser.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "make test",
+    "prepublish": "make"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/llhotka/yang-parser-coffee"
+  },
+  "dependencies": {
+    "comparse": ">= 0.9.x"
+  },
+  "devDependencies": {
+    "coffee-script": "~1.7.1"
+  },
+  "keywords": [ "YANG", "functional", "parser" ],
+  "homepage": "https://github.com/llhotka/yang-parser-coffee/wiki",
+  "author": "Ladislav Lhotka <lhotka@nic.cz>",
+  "license": "Apache 2.0"
+}
