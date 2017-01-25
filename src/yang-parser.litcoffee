@@ -220,7 +220,7 @@ optional.
 The result of the `statement` parser is an initialized `YangStatement` object.
 
     statement = keyword.bind (kw) ->
-      (sep.bind -> argument).option().bind (arg) ->
+      (sep.bind -> argument).option(false).bind (arg) ->
         strict = true if kw[1] is 'yang-version' and arg is '1.1'
         optSep.bind -> semiOrBlock.bind (sst) ->
           P.unit new YangStatement kw[0], kw[1], arg, sst
