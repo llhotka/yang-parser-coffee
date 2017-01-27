@@ -217,10 +217,12 @@ argument is present, it must be separated from the keyword by
 whitespace or comment. A separator preceding the semicolon or block is
 optional.
 
-The result of the `statement` parser is an initialized `YangStatement` object.
+The result of the `statement` parser is an initialized `YangStatement`
+object. If no argument is present, the object's `arg` property is set
+to `false`.
 
     statement = keyword.bind (kw) ->
-      (sep.bind -> argument).option().bind (arg) ->
+      (sep.bind -> argument).option(false).bind (arg) ->
         strict = true if kw[1] is 'yang-version' and arg is '1.1'
         optSep.bind -> semiOrBlock.bind (sst) ->
           P.unit new YangStatement kw[0], kw[1], arg, sst
