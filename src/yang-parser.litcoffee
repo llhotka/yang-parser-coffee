@@ -217,7 +217,9 @@ argument is present, it must be separated from the keyword by
 whitespace or comment. A separator preceding the semicolon or block is
 optional.
 
-The result of the `statement` parser is an initialized `YangStatement` object.
+The result of the `statement` parser is an initialized `YangStatement`
+object. If no argument is present, the object's `arg` property is set
+to `false`.
 
     statement = keyword.bind (kw) ->
       (sep.bind -> argument).option(false).bind (arg) ->
