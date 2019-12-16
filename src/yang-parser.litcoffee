@@ -221,11 +221,20 @@ The result of the `statement` parser is an initialized `YangStatement`
 object. If no argument is present, the object's `arg` property is set
 to `false`.
 
-    statement = keyword.bind (kw) ->
+    rawStatement = keyword.bind (kw) ->
       (sep.bind -> argument).option(false).bind (arg) ->
         strict = true if kw[1] is 'yang-version' and arg is '1.1'
         optSep.bind -> semiOrBlock.bind (sst) ->
           P.unit new YangStatement kw[0], kw[1], arg, sst
+
+    statement = new P (offset) ->
+      res = rawStatement.pf offset
+
+      if res[0] != null
+        res[0].sp = offset
+        res[0].ep = res[1]
+
+      res
 
 A statement block is a sequence of statements enclosed in
 braces. Whitespace or comments are permitted before or after any
